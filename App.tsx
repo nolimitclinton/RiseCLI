@@ -7,11 +7,11 @@ import MessagesScreen from './screens/MessagesScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import { RootStackParamList, HomeTabsParamList } from '/Users/clintononuoha/RiseCLI/src/navigation/src/navigation/navigation.tsx';
 
-// Create Stack and Tab Navigators
+
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const HomeTabs = createBottomTabNavigator<HomeTabsParamList>();
 
-// HomeTabs Navigator
+
 const HomeTabsNavigator = () => {
   return (
     <HomeTabs.Navigator>
@@ -21,7 +21,7 @@ const HomeTabsNavigator = () => {
   );
 };
 
-// RootStack Navigator
+
 export default function App() {
   return (
     <NavigationContainer>
