@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
+import { RootStackScreenProps } from '/Users/clintononuoha/RiseCLI/src/navigation/src/navigation/navigation.tsx';
 
-export default function ProfileScreen() {
+const ProfileScreen = ({ navigation }: RootStackScreenProps<'Profile'>) => {
   return (
-    <View>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Profile Screen</Text>
+      <Button title="Go to Feed" onPress={() => navigation.navigate('HomeTabs', { screen: 'Feed' })} />
+      <Button title="Go to Messages" onPress={() => navigation.navigate('HomeTabs', { screen: 'Messages' })} />
     </View>
   );
-}
+};
+
+export default ProfileScreen;

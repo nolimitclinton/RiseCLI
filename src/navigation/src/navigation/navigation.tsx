@@ -17,6 +17,5 @@ export type HomeTabsParamList = {
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
-// Define Props for Tab Screens
 export type HomeTabsScreenProps<T extends keyof HomeTabsParamList> =
   BottomTabScreenProps<HomeTabsParamList, T>;
