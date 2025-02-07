@@ -1,34 +1,63 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import FeedScreen from './screens/FeedScreen';
-import MessagesScreen from './screens/MessagesScreen';
+import { Image, Text } from 'react-native';
+import ShipmentsScreen from './screens/ShipmentsScreen';
+import ScanScreen from './screens/ScanScreen';
+import WalletScreen from './screens/WalletScreen';
 import ProfileScreen from './screens/ProfileScreen';
-import { RootStackParamList, HomeTabsParamList } from '/Users/clintononuoha/RiseCLI/src/navigation/src/navigation/navigation.tsx';
 
-//main commit
-const RootStack = createNativeStackNavigator<RootStackParamList>();
-const HomeTabs = createBottomTabNavigator<HomeTabsParamList>();
-
-
-const HomeTabsNavigator = () => {
-  return (
-    <HomeTabs.Navigator>
-      <HomeTabs.Screen name="Feed" component={FeedScreen} />
-      <HomeTabs.Screen name="Messages" component={MessagesScreen} />
-    </HomeTabs.Navigator>
-  );
+const ICONS = {
+  Shipments: {
+    active: require('./assets/icons/shipments_active.png'),
+    inactive: require('./assets/icons/shipments.png'),
+  },
+  Scan: {
+    active: require('./assets/icons/scan_active.png'),
+    inactive: require('./assets/icons/scan.png'),
+  },
+  Wallet: {
+    active: require('./assets/icons/wallet_active.png'),
+    inactive: require('./assets/icons/wallet.png'),
+  },
+  Profile: {
+    active: require('./assets/icons/profile_active.png'),
+    inactive: require('./assets/icons/profile.png'),
+  },
 };
 
+const Tab = createBottomTabNavigator();
+
+const BottomTabs = () => {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused }) => (
+          <Image
+            source={focused ? ICONS[route.name].active : ICONS[route.name].inactive}
+            style={{ width: 24, height: 24, resizeMode: 'contain' }}
+          />
+        ),
+        tabBarLabel: ({ focused }) => (
+          <Text style={{ color: focused ? '#0057FF' : '#B0B0B0', fontSize: 12 }}>
+            {route.name}
+          </Text>
+        ),
+        tabBarStyle: { backgroundColor: 'white', height: 65, paddingBottom: 10 },
+      })}
+    >
+      <Tab.Screen name="Shipments" component={ShipmentsScreen} />
+      <Tab.Screen name="Scan" component={ScanScreen} />
+      <Tab.Screen name="Wallet" component={WalletScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
+    </Tab.Navigator>
+  );
+};
 
 export default function App() {
   return (
     <NavigationContainer>
-      <RootStack.Navigator>
-        <RootStack.Screen name="HomeTabs" component={HomeTabsNavigator} options={{ headerShown: false }} />
-        <RootStack.Screen name="Profile" component={ProfileScreen} />
-      </RootStack.Navigator>
+      <BottomTabs />
     </NavigationContainer>
   );
 }
