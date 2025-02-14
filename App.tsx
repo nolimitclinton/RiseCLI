@@ -63,7 +63,7 @@ const BottomTabs = () => {
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
-      <Drawer.Screen name="Home" component={BottomTabs} />
+      <Drawer.Screen name="Home" component={BottomTabs} options={{headerShown:false}}/>
       <Drawer.Screen name="Profile" component={ProfileScreen} />
       <Drawer.Screen name="Bookmarks" component={BookmarksScreen} />
       <Drawer.Screen name="Join Marketplace" component={MarketplaceScreen} />
